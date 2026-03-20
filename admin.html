@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin — Black Jaguars RFC</title>
+  <link rel="stylesheet" href="admin.css" />
+</head>
+<body>
+  <div class="admin-layout">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <img src="logo.png" alt="Logo" class="sidebar-logo" onerror="this.style.display='none'" />
+        <span>Admin Panel</span>
+      </div>
+      <nav class="sidebar-nav">
+        <button class="nav-btn active" onclick="showTab('players')">👥 Players</button>
+        <button class="nav-btn" onclick="showTab('fixtures')">📅 Fixtures</button>
+        <button class="nav-btn" onclick="showTab('news')">📰 News</button>
+        <button class="nav-btn" onclick="showTab('contact')">📍 Contact Info</button>
+        <button class="nav-btn" onclick="showTab('gallery')">🖼 Gallery</button>
+      </nav>
+      <a href="index.html" class="view-site-btn">← View Site</a>
+    </aside>
+
+    <!-- Main -->
+    <main class="admin-main">
+
+      <!-- PLAYERS -->
+      <section id="tab-players" class="tab active">
+        <div class="tab-header">
+          <h1>Players</h1>
+          <button class="btn-add" onclick="openPlayerModal()">+ Add Player</button>
+        </div>
+        <div class="card-grid" id="players-grid"></div>
+      </section>
+
+      <!-- FIXTURES -->
+      <section id="tab-fixtures" class="tab">
+        <div class="tab-header">
+          <h1>Fixtures</h1>
+          <button class="btn-add" onclick="openFixtureModal()">+ Add Fixture</button>
+        </div>
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead>
+              <tr><th>Date</th><th>Home</th><th>Away</th><th>Venue</th><th>Time</th><th>Result</th><th></th></tr>
+            </thead>
+            <tbody id="fixtures-tbody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- NEWS -->
+      <section id="tab-news" class="tab">
+        <div class="tab-header">
+          <h1>News &amp; Announcements</h1>
+          <button class="btn-add" onclick="openNewsModal()">+ Add Post</button>
+        </div>
+        <div class="news-list" id="news-list"></div>
+      </section>
+
+      <!-- CONTACT -->
+      <section id="tab-contact" class="tab">
+        <div class="tab-header"><h1>Contact Info</h1></div>
+        <form class="contact-form-admin" onsubmit="saveContact(event)">
+          <label>Address
+            <input type="text" id="c-address" placeholder="Ladysmith Sports Ground, Ladysmith, KZN 3370" />
+          </label>
+          <label>Email
+            <input type="email" id="c-email" placeholder="info@blackjaguarsrugby.co.za" />
+          </label>
+          <label>Phone
+            <input type="tel" id="c-phone" placeholder="+27 36 000 0000" />
+          </label>
+          <label>Training Schedule
+            <input type="text" id="c-training" placeholder="Tue & Thu 17:30 · Sat 08:00" />
+          </label>
+          <label>Facebook URL
+            <input type="url" id="c-facebook" placeholder="https://facebook.com/..." />
+          </label>
+          <label>Instagram URL
+            <input type="url" id="c-instagram" placeholder="https://instagram.com/..." />
+          </label>
+          <button type="submit" class="btn-save">Save Changes</button>
+          <p class="save-msg" id="contact-saved">Saved!</p>
+        </form>
+      </section>
+
+      <!-- GALLERY -->
+      <section id="tab-gallery" class="tab">
+        <div class="tab-header">
+          <h1>Gallery</h1>
+          <button class="btn-add" onclick="openGalleryModal()">+ Add Media</button>
+        </div>
+        <div class="gallery-filter">
+          <button class="gf-btn active" onclick="filterGallery('all', this)">All</button>
+          <button class="gf-btn" onclick="filterGallery('image', this)">Photos</button>
+          <button class="gf-btn" onclick="filterGallery('video', this)">Videos</button>
+        </div>
+        <div class="gallery-admin-grid" id="gallery-admin-grid"></div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- PLAYER MODAL -->
+  <div class="modal-overlay" id="player-modal">
+    <div class="modal">
+      <h2 id="player-modal-title">Add Player</h2>
+      <form onsubmit="savePlayer(event)">
+        <input type="hidden" id="p-index" value="-1" />
+        <label>Name <input type="text" id="p-name" required /></label>
+        <label>Jersey Number <input type="number" id="p-number" min="1" max="99" required /></label>
+        <label>Position <input type="text" id="p-position" required /></label>
+        <label>
+          <input type="checkbox" id="p-captain" /> Captain
+        </label>
+        <div class="modal-actions">
+          <button type="button" class="btn-cancel" onclick="closeModal('player-modal')">Cancel</button>
+          <button type="submit" class="btn-save">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- FIXTURE MODAL -->
+  <div class="modal-overlay" id="fixture-modal">
+    <div class="modal">
+      <h2 id="fixture-modal-title">Add Fixture</h2>
+      <form onsubmit="saveFixture(event)">
+        <input type="hidden" id="f-index" value="-1" />
+        <label>Date <input type="date" id="f-date" required /></label>
+        <label>Home Team <input type="text" id="f-home" required /></label>
+        <label>Away Team <input type="text" id="f-away" required /></label>
+        <label>Venue <input type="text" id="f-venue" /></label>
+        <label>Kick-off Time <input type="time" id="f-time" /></label>
+        <label>Division
+          <select id="f-division">
+            <option value="1st">1st Division</option>
+            <option value="2nd">2nd Division</option>
+            <option value="3rd">3rd Division</option>
+          </select>
+        </label>
+        <label>Result (leave blank if upcoming)
+          <input type="text" id="f-result" placeholder="e.g. W 34-12 or L 14-27" />
+        </label>
+        <div class="modal-actions">
+          <button type="button" class="btn-cancel" onclick="closeModal('fixture-modal')">Cancel</button>
+          <button type="submit" class="btn-save">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- NEWS MODAL -->
+  <div class="modal-overlay" id="news-modal">
+    <div class="modal">
+      <h2 id="news-modal-title">Add Post</h2>
+      <form onsubmit="saveNews(event)">
+        <input type="hidden" id="n-index" value="-1" />
+        <label>Title <input type="text" id="n-title" required /></label>
+        <label>Date <input type="date" id="n-date" required /></label>
+        <label>Content
+          <textarea id="n-content" rows="5" required></textarea>
+        </label>
+        <div class="modal-actions">
+          <button type="button" class="btn-cancel" onclick="closeModal('news-modal')">Cancel</button>
+          <button type="submit" class="btn-save">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- GALLERY MODAL -->
+  <div class="modal-overlay" id="gallery-modal">
+    <div class="modal">
+      <h2>Add Media</h2>
+      <form onsubmit="saveGalleryItem(event)">
+        <label>Type
+          <select id="g-type" onchange="toggleGalleryInputs()">
+            <option value="image">Photo</option>
+            <option value="video">Video</option>
+          </select>
+        </label>
+        <!-- Image upload -->
+        <div id="g-upload-wrap">
+          <label>Upload Photo
+            <input type="file" id="g-file" accept="image/*" onchange="previewFile()" />
+          </label>
+          <div id="g-preview-wrap" style="display:none">
+            <img id="g-preview" src="" alt="Preview" style="max-width:100%;border-radius:6px;margin-top:0.5rem;" />
+          </div>
+        </div>
+        <!-- Video URL -->
+        <div id="g-url-wrap" style="display:none">
+          <label>YouTube / Video URL
+            <input type="url" id="g-url" placeholder="https://youtube.com/watch?v=..." />
+          </label>
+        </div>
+        <label>Caption (optional)
+          <input type="text" id="g-caption" placeholder="Match day vs Bears..." />
+        </label>
+        <div class="modal-actions">
+          <button type="button" class="btn-cancel" onclick="closeModal('gallery-modal')">Cancel</button>
+          <button type="submit" class="btn-save">Add</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="admin.js"></script>
+</body>
+</html>

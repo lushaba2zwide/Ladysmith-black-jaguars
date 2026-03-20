@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ladysmith Black Jaguars Rugby Club | Ladysmith, KwaZulu-Natal</title>
+
+  <!-- SEO -->
+  <meta name="description" content="Ladysmith Black Jaguars Rugby Club — a proud community rugby club based in Ladysmith, KwaZulu-Natal, South Africa. Competing in the NKZNRU 2026 season." />
+  <meta name="keywords" content="Ladysmith Black Jaguars, rugby club, KwaZulu-Natal, NKZNRU, Ladysmith rugby, South Africa rugby" />
+  <meta name="author" content="Ladysmith Black Jaguars RFC" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://blackjaguarsrfc.netlify.app/" />
+
+  <!-- Open Graph (WhatsApp, Facebook previews) -->
+  <meta property="og:title" content="Ladysmith Black Jaguars Rugby Club" />
+  <meta property="og:description" content="Pride. Power. Purpose. Community rugby in Ladysmith, KwaZulu-Natal." />
+  <meta property="og:image" content="logo.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://blackjaguarsrfc.netlify.app/" />
+
+  <!-- Twitter card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Ladysmith Black Jaguars RFC" />
+  <meta name="twitter:description" content="Community rugby club in Ladysmith, KwaZulu-Natal, South Africa." />
+  <meta name="twitter:image" content="logo.png" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="navbar">
+    <div class="nav-brand">
+      <img src="logo.png" alt="Ladysmith Black Jaguars Logo" class="nav-logo" />
+      <span class="brand-name">Ladysmith Black Jaguars</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#team">Team</a></li>
+      <li><a href="#fixtures">Fixtures</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="admin.html" class="admin-link">⚙ Admin</a></li>
+    </ul>
+    <button class="nav-toggle" aria-label="Toggle navigation" onclick="toggleNav()">☰</button>
+  </nav>
+
+  <!-- HERO -->
+  <section id="home" class="hero">
+    <div class="hero-slides" id="hero-slides"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p class="hero-sub">Ladysmith · KwaZulu-Natal · South Africa</p>
+      <img src="logo.png" alt="Ladysmith Black Jaguars" class="hero-logo" />
+      <h1>Ladysmith Black Jaguars</h1>
+      <p class="hero-tagline">Pride. Power. Purpose.</p>
+      <a href="#fixtures" class="btn btn-primary">View Fixtures</a>
+      <a href="#about" class="btn btn-outline">Our Story</a>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="section about">
+    <div class="container">
+      <h2 class="section-title">About the Club</h2>
+      <div class="about-grid">
+        <div class="about-text">
+          <p>The Ladysmith Black Jaguars Rugby Club is a proud community rugby club based in Ladysmith, KwaZulu-Natal. Founded with a passion for the game and a commitment to developing local talent, we represent the heart and spirit of Ladysmith on the rugby field.</p>
+          <p>We compete in the KwaZulu-Natal regional rugby leagues and are dedicated to growing the sport at grassroots level — from youth development to senior competitive rugby.</p>
+          <div class="stats-row">
+            <div class="stat">
+              <span class="stat-number">1st</span>
+              <span class="stat-label">Division</span>
+            </div>
+            <div class="stat">
+              <span class="stat-number">KZN</span>
+              <span class="stat-label">Region</span>
+            </div>
+            <div class="stat">
+              <span class="stat-number">🏆</span>
+              <span class="stat-label">Champions</span>
+            </div>
+          </div>
+        </div>
+        <div class="about-values">
+          <div class="value-card">
+            <span class="value-icon">🐆</span>
+            <h3>Pride</h3>
+            <p>We wear the black jersey with honour and represent Ladysmith with pride every time we take the field.</p>
+          </div>
+          <div class="value-card">
+            <span class="value-icon">💪</span>
+            <h3>Power</h3>
+            <p>Physical strength, mental toughness, and relentless effort define how we play the game.</p>
+          </div>
+          <div class="value-card">
+            <span class="value-icon">🤝</span>
+            <h3>Community</h3>
+            <p>Rugby is more than a sport — it's a bond that unites our community and builds future leaders.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section id="team" class="section team">
+    <div class="container">
+      <h2 class="section-title">The Squad</h2>
+      <p class="section-sub">Meet the players who bleed black for Ladysmith.</p>
+      <div class="team-grid">
+        <div class="player-card">
+          <div class="player-avatar">1</div>
+          <h3>Siyanda Dlamini</h3>
+          <span class="position">Loosehead Prop</span>
+          <span class="captain-badge">Captain</span>
+        </div>
+        <div class="player-card">
+          <div class="player-avatar">9</div>
+          <h3>Thabo Mthembu</h3>
+          <span class="position">Scrumhalf</span>
+        </div>
+        <div class="player-card">
+          <div class="player-avatar">10</div>
+          <h3>Lungelo Zulu</h3>
+          <span class="position">Flyhalf</span>
+        </div>
+        <div class="player-card">
+          <div class="player-avatar">8</div>
+          <h3>Nkosinathi Cele</h3>
+          <span class="position">Number 8</span>
+        </div>
+        <div class="player-card">
+          <div class="player-avatar">15</div>
+          <h3>Bongani Ntuli</h3>
+          <span class="position">Fullback</span>
+        </div>
+        <div class="player-card">
+          <div class="player-avatar">7</div>
+          <h3>Musa Khumalo</h3>
+          <span class="position">Openside Flanker</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FIXTURES -->
+  <section id="fixtures" class="section fixtures">
+    <div class="container">
+      <h2 class="section-title">Fixtures & Results</h2>
+      <p class="section-sub">2026 Season</p>
+      <div class="fixtures-table-wrap">
+        <table class="fixtures-table">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Home</th>
+              <th>Away</th>
+              <th>Venue</th>
+              <th>Result</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="result-win">
+              <td>7 Feb 2026</td>
+              <td class="home-team">Black Jaguars</td>
+              <td>Dundee RFC</td>
+              <td>Ladysmith Sports Ground</td>
+              <td><span class="badge win">W 34–12</span></td>
+            </tr>
+            <tr class="result-win">
+              <td>21 Feb 2026</td>
+              <td>Newcastle RFC</td>
+              <td class="home-team">Black Jaguars</td>
+              <td>Newcastle</td>
+              <td><span class="badge win">W 22–18</span></td>
+            </tr>
+            <tr class="result-loss">
+              <td>7 Mar 2026</td>
+              <td class="home-team">Black Jaguars</td>
+              <td>Estcourt RFC</td>
+              <td>Ladysmith Sports Ground</td>
+              <td><span class="badge loss">L 14–27</span></td>
+            </tr>
+            <tr class="upcoming">
+              <td>28 Mar 2026</td>
+              <td>Colenso RFC</td>
+              <td class="home-team">Black Jaguars</td>
+              <td>Colenso</td>
+              <td><span class="badge upcoming">Upcoming</span></td>
+            </tr>
+            <tr class="upcoming">
+              <td>11 Apr 2026</td>
+              <td class="home-team">Black Jaguars</td>
+              <td>Bergville RFC</td>
+              <td>Ladysmith Sports Ground</td>
+              <td><span class="badge upcoming">Upcoming</span></td>
+            </tr>
+            <tr class="upcoming">
+              <td>25 Apr 2026</td>
+              <td class="home-team">Black Jaguars</td>
+              <td>Weenen RFC</td>
+              <td>Ladysmith Sports Ground</td>
+              <td><span class="badge upcoming">Upcoming</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- FIXTURES -->
+  <section id="fixtures" class="section fixtures">
+    <div class="container">
+      <h2 class="section-title">Fixtures &amp; Results</h2>
+      <p class="section-sub">NKZNRU 2026 Season</p>
+
+      <!-- Division tabs -->
+      <div class="div-tabs">
+        <button class="div-tab active" onclick="showDiv('first')">1st Division</button>
+        <button class="div-tab" onclick="showDiv('second')">2nd Division</button>
+        <button class="div-tab" onclick="showDiv('third')">3rd Division</button>
+      </div>
+
+      <!-- FIRST DIV -->
+      <div class="div-panel active" id="div-first">
+        <div class="fixtures-table-wrap">
+          <table class="fixtures-table">
+            <thead>
+              <tr><th>#</th><th>Round / Date</th><th>Home</th><th>Away</th><th>Venue</th><th>Kick-off</th></tr>
+            </thead>
+            <tbody>
+              <tr class="round-header"><td colspan="6">Round 1 — Saturday 18 April 2026</td></tr>
+              <tr><td>1</td><td></td><td>Volksrust</td><td>Bears</td><td>Volksrust</td><td>15:30</td></tr>
+              <tr><td>2</td><td></td><td>Sentraal</td><td>Vryheid</td><td>Glencoe</td><td>15:30</td></tr>
+              <tr class="jaguars-row"><td>3</td><td></td><td class="home-team">Black Jaguars</td><td colspan="3"><span class="badge bye">Bye</span></td></tr>
+
+              <tr class="round-header"><td colspan="6">Round 2 — Saturday 25 April 2026</td></tr>
+              <tr><td>1</td><td></td><td>Vryheid</td><td>Volksrust</td><td>Vryheid</td><td>15:30</td></tr>
+              <tr class="jaguars-row"><td>2</td><td></td><td>Bears</td><td class="home-team">Black Jaguars</td><td>Arborpark B field</td><td>15:30</td></tr>
+              <tr><td>3</td><td></td><td>Sentraal</td><td colspan="3"><span class="badge bye">Bye</span></td></tr>
+
+              <tr class="round-header"><td colspan="6">Round 3 — Saturday 09 May 2026</td></tr>
+              <tr class="jaguars-row"><td>1</td><td></td><td class="home-team">Black Jaguars</td><td>Vryheid</td><td>Ladysmith</td><td>15:30</td></tr>
+              <tr><td>2</td><td></td><td>Volksrust</td><td>Sentraal</td><td>Volksrust</td><td>15:30</td></tr>
+              <tr><td>3</td><td></td><td>Bears</td><td colspan="3"><span class="badge bye">Bye</span></td></tr>
+
+              <tr class="round-header"><td colspan="6">Round 4 — Saturday 16 May 2026</td></tr>
+              <tr><td>1</td><td></td><td>Sentraal</td><td class="home-team">Black Jaguars</td><td>Glencoe</td><td>15:30</td></tr>
+              <tr><td>2</td><td></td><td>Vryheid</td><td>Bears</td><td>Vryheid</td><td>15:30</td></tr>
+              <tr><td>3</td><td></td><td>Volksrust</td><td colspan="3"><span class="badge bye">Bye</span></td></tr>
+
+              <tr class="round-header"><td colspan="6">Round 5 — Saturday 23 May 2026</td></tr>
+              <tr><td>1</td><td></td><td>Bears</td><td>Sentraal</td><td>Arborpark B field</td><td>15:30</td></tr>
+              <tr class="jaguars-row"><td>2</td><td></td><td class="home-team">Black Jaguars</td><td>Volksrust</td><td>Ladysmith</td><td>15:30</td></tr>
+              <tr><td>3</td><td></td><td>Vryheid</td><td colspan="3"><span class="badge bye">Bye</span></td></tr>
+
+              <tr class="round-header"><td colspan="6">Round 6 — Saturday 30 May 2026</td></tr>
+              <tr><td>1</td><td></td><td>Bears</td><td>Volksrust</td><td>Arborpark B field</td><td>15:30</td></tr>
+              <tr><td>2</td><td></td><td>Vryheid</td><td>Sentraal</td><td>Vryheid</td><td>15:30</td></tr>
+              <tr class="jaguars-row"><td>3</td><td></td><td class="home-team">Black Jaguars</td><td colspan="3"><span class="badge bye">Bye</span></td></tr>
+
+              <tr class="round-header"><td colspan="6">Round 7 — Saturday 06 June 2026</td></tr>
+              <tr><td>1</td><td></td><td>Volksrust</td><td>Vryheid</td><td>Volksrust</td><td>15:30</td></tr>
+              <tr class="jaguars-row"><td>2</td><td></td><td class="home-team">Black Jaguars</td><td>Bears</td><td>Ladysmith</td><td>15:30</td></tr>
+              <tr><td>3</td><td></td><td>Sentraal</td><td colspan="3"><span class="badge bye">Bye</span></td></tr>
+
+              <tr class="round-header"><td colspan="6">Round 8 — Saturday 13 June 2026</td></tr>
+              <tr><td>1</td><td></td><td>Vryheid</td><td class="home-team">Black Jaguars</td><td>Vryheid</td><td>15:30</td></tr>
+              <tr><td>2</td><td></td><td>Sentraal</td><td>Volksrust</td><td>Glencoe</td><td>15:30</td></tr>
+              <tr><td>3</td><td></td><td>Bears</td><td colspan="3"><span class="badge bye">Bye</span></td></tr>
+
+              <tr class="round-header"><td colspan="6">Round 9 — Saturday 20 June 2026</td></tr>
+              <tr class="jaguars-row"><td>1</td><td></td><td class="home-team">Black Jaguars</td><td>Sentraal</td><td>Ladysmith</td><td>15:30</td></tr>
+              <tr><td>2</td><td></td><td>Bears</td><td>Vryheid</td><td>Arborpark B field</td><td>15:30</td></tr>
+              <tr><td>3</td><td></td><td>Volksrust</td><td colspan="3"><span class="badge bye">Bye</span></td></tr>
+
+              <tr class="round-header"><td colspan="6">Round 10 — Saturday 04 July 2026</td></tr>
+              <tr><td>1</td><td></td><td>Sentraal</td><td>Bears</td><td>Glencoe</td><td>15:30</td></tr>
+              <tr><td>2</td><td></td><td>Volksrust</td><td class="home-team">Black Jaguars</td><td>Volksrust</td><td>15:30</td></tr>
+              <tr><td>3</td><td></td><td>Vryheid</td><td colspan="3"><span class="badge bye">Bye</span></td></tr>
+
+              <tr class="round-header"><td colspan="6">Round 11 — Saturday 11 July 2026 (Semi-Finals)</td></tr>
+              <tr><td>1</td><td></td><td>1st</td><td>4th</td><td>TBC</td><td>TBC</td></tr>
+              <tr><td>2</td><td></td><td>2nd</td><td>3rd</td><td>TBC</td><td>TBC</td></tr>
+
+              <tr class="round-header final-row"><td colspan="6">Round 12 — Saturday 18 July 2026 — FINAL</td></tr>
+              <tr><td>1</td><td></td><td>Winner A</td><td>Winner B</td><td>TBC</td><td>TBC</td></tr>
+
+              <tr class="round-header dewar-row"><td colspan="6">25 July 2026 — Dewar Shield: North Winner vs South Winner</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- SECOND DIV -->
+      <div class="div-panel" id="div-second">
+        <div class="fixtures-table-wrap">
+          <table class="fixtures-table">
+            <thead>
+              <tr><th>#</th><th>Round / Date</th><th>Home</th><th>Away</th><th>Venue</th><th>Kick-off</th></tr>
+            </thead>
+            <tbody>
+              <tr class="round-header"><td colspan="6">Round 1 — Saturday 18 April 2026</td></tr>
+              <tr><td>1</td><td></td><td>Volksrust 2</td><td>Bears</td><td>Volksrust</td><td>14:00</td></tr>
+              <tr><td>2</td><td></td><td>Sentraal</td><td>Vryheid</td><td>Glencoe</td><td>14:00</td></tr>
+
+              <tr class="round-header"><td colspan="6">Round 2 — Saturday 25 April 2026</td></tr>
+              <tr><td>1</td><td></td><td>Vryheid 2</td><td>Volksrust</td><td>Vryheid</td><td>14:00</td></tr>
+              <tr class="jaguars-row"><td>2</td><td></td><td>Bears 2</td><td class="home-team">Black Jaguars 2</td><td>Arborpark B field</td><td>14:00</td></tr>
+              <tr><td>3</td><td></td><td>Sentraal</td><td colspan="3"><span class="badge bye">Bye</span></td></tr>
+
+              <tr class="round-header"><td colspan="6">Round 3 — Saturday 09 May 2026</td></tr>
+              <tr class="jaguars-row"><td>1</td><td></td><td class="home-team">Black Jaguars 2</td><td>Vryheid</td><td>Ladysmith</td><td>14:00</td></tr>
+              <tr><td>2</td><td></td><td>Volksrust 2</td><td>Sentraal</td><td>Volksrust</td><td>14:00</td></tr>
+              <tr><td>3</td><td></td><td>Bears</td><td colspan="3"><span class="badge bye">Bye</span></td></tr>
+
+              <tr class="round-header"><td colspan="6">Round 4 — Saturday 16 May 2026</td></tr>
+              <tr class="jaguars-row"><td>1</td><td></td><td>Sentraal 2</td><td class="home-team">Black Jaguars</td><td>Glencoe</td><td>14:00</td></tr>
+              <tr><td>2</td><td></td><td>Vryheid 2</td><td>Bears 2</td><td>Vryheid</td><td>14:00</td></tr>
+
+              <tr class="round-header"><td colspan="6">Round 5 — Saturday 23 May 2026</td></tr>
+              <tr><td>1</td><td></td><td>Bears 2</td><td>Sentraal 2</td><td>Arborpark B field</td><td>14:00</td></tr>
+              <tr class="jaguars-row"><td>2</td><td></td><td class="home-team">Black Jaguars 2</td><td>Volksrust 2</td><td>Ladysmith</td><td>14:00</td></tr>
+              <tr><td>3</td><td></td><td>Vryheid 2</td><td colspan="3"><span class="badge bye">Bye</span></td></tr>
+
+              <tr class="round-header"><td colspan="6">Round 6 — Saturday 30 May 2026</td></tr>
+              <tr><td>1</td><td></td><td>Bears 2</td><td>Volksrust 2</td><td>Arborpark B field</td><td>14:00</td></tr>
+              <tr><td>2</td><td></td><td>Vryheid 2</td><td>Sentraal 2</td><td>Vryheid</td><td>14:00</td></tr>
+              <tr class="jaguars-row"><td>3</td><td></td><td class="home-team">Black Jaguars</td><td colspan="3"><span class="badge bye">Bye</span></td></tr>
+
+              <tr class="round-header"><td colspan="6">Round 7 — Saturday 06 June 2026</td></tr>
+              <tr><td>1</td><td></td><td>Volksrust 2</td><td>Vryheid 2</td><td>Volksrust</td><td>14:00</td></tr>
+              <tr class="jaguars-row"><td>2</td><td></td><td class="home-team">Black Jaguars 2</td><td>Bears 2</td><td>Ladysmith</td><td>14:00</td></tr>
+              <tr><td>3</td><td></td><td>Sentraal</td><td colspan="3"><span class="badge bye">Bye</span></td></tr>
+
+              <tr class="round-header"><td colspan="6">Round 8 — Saturday 13 June 2026</td></tr>
+              <tr class="jaguars-row"><td>1</td><td></td><td>Vryheid 2</td><td class="home-team">Black Jaguars 2</td><td>Vryheid</td><td>14:00</td></tr>
+              <tr><td>2</td><td></td><td>Sentraal 2</td><td>Volksrust 2</td><td>Glencoe</td><td>14:00</td></tr>
+              <tr><td>3</td><td></td><td>Bears</td><td colspan="3"><span class="badge bye">Bye</span></td></tr>
+
+              <tr class="round-header"><td colspan="6">Round 9 — Saturday 20 June 2026</td></tr>
+              <tr class="jaguars-row"><td>1</td><td></td><td class="home-team">Black Jaguars 2</td><td>Sentraal 2</td><td>Ladysmith</td><td>14:00</td></tr>
+              <tr><td>2</td><td></td><td>Bears 2</td><td>Vryheid 2</td><td>Arborpark B field</td><td>14:00</td></tr>
+              <tr><td>3</td><td></td><td>Volksrust</td><td colspan="3"><span class="badge bye">Bye</span></td></tr>
+
+              <tr class="round-header"><td colspan="6">Round 10 — Saturday 04 July 2026</td></tr>
+              <tr><td>1</td><td></td><td>Sentraal 2</td><td>Bears 2</td><td>Glencoe</td><td>14:00</td></tr>
+              <tr class="jaguars-row"><td>2</td><td></td><td>Volksrust 2</td><td class="home-team">Black Jaguars 2</td><td>Volksrust</td><td>14:00</td></tr>
+              <tr><td>3</td><td></td><td>Vryheid</td><td colspan="3"><span class="badge bye">Bye</span></td></tr>
+
+              <tr class="round-header"><td colspan="6">Round 11 — Saturday 11 July 2026 (Semi-Finals)</td></tr>
+              <tr><td>1</td><td></td><td>1st</td><td>4th</td><td>TBC</td><td>TBC</td></tr>
+              <tr><td>2</td><td></td><td>2nd</td><td>3rd</td><td>TBC</td><td>TBC</td></tr>
+
+              <tr class="round-header final-row"><td colspan="6">Round 12 — Saturday 18 July 2026 — FINAL</td></tr>
+              <tr><td>1</td><td></td><td>Winner A</td><td>Winner B</td><td>TBC</td><td>TBC</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- THIRD DIV -->
+      <div class="div-panel" id="div-third">
+        <div class="fixtures-table-wrap">
+          <table class="fixtures-table">
+            <thead>
+              <tr><th>#</th><th>Round / Date</th><th>Home</th><th>Away</th><th>Venue</th><th>Kick-off</th></tr>
+            </thead>
+            <tbody>
+              <tr class="round-header"><td colspan="6">Round 2 — Saturday 25 April 2026</td></tr>
+              <tr><td>1</td><td></td><td>Newcastle Highlanders 3</td><td>Newcastle Highlanders 4</td><td>Arborpark</td><td>15:00</td></tr>
+              <tr><td>2</td><td></td><td>Utrecht Flying Eagles</td><td>Utrecht</td><td>Utrecht</td><td>15:00</td></tr>
+
+              <tr class="round-header"><td colspan="6">Round 3 — Saturday 09 May 2026</td></tr>
+              <tr><td>1</td><td></td><td>Flying Eagles</td><td>Newcastle Highlanders 4</td><td>Arborpark B field</td><td>14:00</td></tr>
+              <tr><td>2</td><td></td><td>Newcastle Highlanders 3</td><td>Utrecht</td><td>Arborpark B field</td><td>15:30</td></tr>
+
+              <tr class="round-header"><td colspan="6">Round 5 — Friday Night 22 May 2026</td></tr>
+              <tr><td>1</td><td></td><td>Flying Eagles</td><td>Newcastle Highlanders 3</td><td>Arborpark A field</td><td>18:30</td></tr>
+              <tr><td>2</td><td></td><td>Newcastle Highlanders 4</td><td>Utrecht</td><td>Arborpark A field</td><td>20:00</td></tr>
+
+              <tr class="round-header"><td colspan="6">Round 6 — Saturday 30 May 2026</td></tr>
+              <tr><td>1</td><td></td><td>Newcastle Highlanders 3</td><td>Newcastle Highlanders 4</td><td>Arborpark A field</td><td>14:00</td></tr>
+              <tr><td>2</td><td></td><td>Flying Eagles</td><td>Utrecht</td><td>Arborpark A field</td><td>15:30</td></tr>
+
+              <tr class="round-header"><td colspan="6">Round 7 — Saturday 06 June 2026</td></tr>
+              <tr><td>1</td><td></td><td>Newcastle Highlanders 4</td><td>Flying Eagles</td><td>Arborpark A field</td><td>15:00</td></tr>
+              <tr><td>2</td><td></td><td>Utrecht</td><td>Newcastle Highlanders 3</td><td>Utrecht</td><td>15:00</td></tr>
+
+              <tr class="round-header"><td colspan="6">Round 9 — Saturday 20 June 2026</td></tr>
+              <tr><td>1</td><td></td><td>Newcastle Highlanders 3</td><td>Flying Eagles</td><td>Arborpark A field</td><td>17:00</td></tr>
+              <tr><td>2</td><td></td><td>Utrecht</td><td>Newcastle Highlanders 4</td><td>Utrecht</td><td>15:00</td></tr>
+
+              <tr class="round-header"><td colspan="6">Round 10 — Saturday 04 July 2026</td></tr>
+              <tr><td>1</td><td></td><td>1st</td><td>4th</td><td>TBC</td><td>15:00</td></tr>
+              <tr><td>2</td><td></td><td>2nd</td><td>3rd</td><td>TBC</td><td>15:00</td></tr>
+
+              <tr class="round-header final-row"><td colspan="6">Round 11 — Saturday 11 July 2026 — FINAL</td></tr>
+              <tr><td>F</td><td></td><td>Winner A</td><td>Winner B</td><td>Best on log (venue)</td><td>TBC</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section id="gallery" class="section gallery-section">
+    <div class="container">
+      <h2 class="section-title">Gallery</h2>
+      <p class="section-sub">Photos &amp; videos from the Black Jaguars.</p>
+      <div class="gallery-filter-pub">
+        <button class="gfp-btn active" onclick="filterPubGallery('all', this)">All</button>
+        <button class="gfp-btn" onclick="filterPubGallery('image', this)">Photos</button>
+        <button class="gfp-btn" onclick="filterPubGallery('video', this)">Videos</button>
+      </div>
+      <div class="gallery-pub-grid" id="gallery-pub-grid">
+        <p class="gallery-empty">No media added yet. Check back soon.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+    <div class="lightbox-content" id="lightbox-content"></div>
+  </div>
+
+  <!-- CONTACT -->
+  <section id="contact" class="section contact">
+    <div class="container">
+      <h2 class="section-title">Get In Touch</h2>
+      <p class="section-sub">Want to join, sponsor, or just show support? Reach out.</p>
+      <div class="contact-grid">
+        <div class="contact-info">
+          <div class="contact-item">
+            <span class="contact-icon">📍</span>
+            <div>
+              <strong>Location</strong>
+              <p>Ladysmith Sports Ground<br />Ladysmith, KwaZulu-Natal, 3370</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <span class="contact-icon">📧</span>
+            <div>
+              <strong>Email</strong>
+              <p>info@blackjaguarsrugby.co.za</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <span class="contact-icon">📞</span>
+            <div>
+              <strong>Phone</strong>
+              <p>+27 36 000 0000</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <span class="contact-icon">🏋️</span>
+            <div>
+              <strong>Training</strong>
+              <p>Tuesday & Thursday · 17:30<br />Saturday · 08:00</p>
+            </div>
+          </div>
+        </div>
+        <form class="contact-form" onsubmit="handleSubmit(event)">
+          <input type="text" placeholder="Your Name" required aria-label="Your Name" />
+          <input type="email" placeholder="Your Email" required aria-label="Your Email" />
+          <select aria-label="Reason for contact">
+            <option value="">Reason for contact</option>
+            <option>Join the Club</option>
+            <option>Sponsorship</option>
+            <option>General Enquiry</option>
+          </select>
+          <textarea rows="4" placeholder="Your message..." required aria-label="Message"></textarea>
+          <button type="submit" class="btn btn-primary">Send Message</button>
+          <p class="form-success" id="form-success">Message sent! We'll be in touch soon.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <img src="logo.png" alt="Ladysmith Black Jaguars Logo" class="footer-logo" />
+        <span>Ladysmith Black Jaguars RFC</span>
+      </div>
+      <p class="footer-copy">© 2026 Ladysmith Black Jaguars Rugby Club · Ladysmith, KwaZulu-Natal</p>
+      <div class="footer-socials">
+        <a href="#" aria-label="Facebook">FB</a>
+        <a href="#" aria-label="Instagram">IG</a>
+        <a href="#" aria-label="Twitter/X">X</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
