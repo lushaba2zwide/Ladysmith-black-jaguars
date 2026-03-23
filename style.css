@@ -862,8 +862,17 @@ a { text-decoration: none; color: inherit; }
 
 .footer-inner {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+  text-align: center;
+}
+
+.footer-top {
+  display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
   flex-wrap: wrap;
   gap: 1rem;
 }
@@ -872,23 +881,52 @@ a { text-decoration: none; color: inherit; }
 .footer-logo { height: 32px; width: auto; opacity: 0.85; }
 .footer-copy { color: var(--grey); font-size: 0.85rem; }
 
-.footer-socials { display: flex; gap: 1rem; }
-
-.footer-socials a {
-  background: var(--card-bg);
-  border: 1px solid rgba(201,168,76,0.2);
-  color: var(--grey);
-  width: 36px; height: 36px;
-  border-radius: 50%;
+.footer-socials {
   display: flex;
-  align-items: center;
+  gap: 0.8rem;
+  flex-wrap: wrap;
   justify-content: center;
-  font-size: 0.75rem;
-  font-weight: 700;
-  transition: all var(--transition);
 }
 
-.footer-socials a:hover { border-color: var(--gold); color: var(--gold); }
+/* Base social icon pill */
+.social-icon {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1.1rem;
+  border-radius: 50px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border: 1px solid transparent;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+  text-decoration: none;
+}
+
+.social-icon i { font-size: 1rem; }
+.social-icon span { font-size: 0.75rem; }
+
+.social-icon:hover { transform: translateY(-3px); opacity: 0.9; }
+
+/* Individual brand colours */
+.si-facebook  { background: #1877f2; color: #fff; }
+.si-facebook:hover  { box-shadow: 0 6px 20px rgba(24,119,242,0.5); }
+
+.si-instagram {
+  background: linear-gradient(135deg, #f58529, #dd2a7b, #8134af, #515bd4);
+  color: #fff;
+}
+.si-instagram:hover { box-shadow: 0 6px 20px rgba(221,42,123,0.5); }
+
+.si-tiktok    { background: #010101; color: #fff; border-color: rgba(255,255,255,0.15); }
+.si-tiktok:hover    { box-shadow: 0 6px 20px rgba(105,201,208,0.4); }
+
+.si-whatsapp  { background: #25d366; color: #fff; }
+.si-whatsapp:hover  { box-shadow: 0 6px 20px rgba(37,211,102,0.5); }
+
+.si-email     { background: var(--card-bg); color: var(--gold); border-color: rgba(201,168,76,0.3); }
+.si-email:hover     { box-shadow: 0 6px 20px rgba(201,168,76,0.3); }
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
