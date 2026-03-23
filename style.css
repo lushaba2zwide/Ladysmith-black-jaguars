@@ -180,6 +180,25 @@ a { text-decoration: none; color: inherit; }
   );
 }
 
+/* Watermark logo */
+.hero-watermark {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background-image: url('logo.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 60%;
+  opacity: 0.06;
+  filter: grayscale(100%);
+  animation: watermark-pulse 6s ease-in-out infinite;
+}
+
+@keyframes watermark-pulse {
+  0%, 100% { opacity: 0.05; transform: scale(1); }
+  50%       { opacity: 0.09; transform: scale(1.03); }
+}
+
 .hero-content {
   position: relative;
   z-index: 2;
