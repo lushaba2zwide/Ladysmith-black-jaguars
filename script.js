@@ -58,16 +58,7 @@ document.querySelectorAll('.value-card, .player-card, .stat').forEach(el => {
   if (!container) return;
 
   let images = [];
-  try {
-    const gallery = JSON.parse(localStorage.getItem('bjr_gallery')) || [];
-    const adminImgs = gallery.filter(g => g.type === 'image').map(g => g.src);
-    images = adminImgs.length ? adminImgs : STATIC_IMAGES;
-  } catch {
-    images = STATIC_IMAGES;
-  }
-
   if (!images.length) {
-    // no gallery images yet — show fallback jaguar pattern
     container.closest('.hero').classList.add('hero-no-images');
     container.closest('.hero').style.background =
       'linear-gradient(135deg, #0a0a0a 0%, #1a1a0a 50%, #0a0a0a 100%)';
