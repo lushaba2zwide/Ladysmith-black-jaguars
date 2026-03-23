@@ -413,6 +413,44 @@ a { text-decoration: none; color: inherit; }
 
 .section-sub { color: var(--grey); margin-bottom: 3rem; margin-top: 0.5rem; }
 
+/* ===== JAGUAR WATERMARK — shared by multiple sections ===== */
+.about,
+.team,
+.fixtures,
+.community,
+.contact,
+.gallery-section {
+  position: relative;
+}
+
+.about::before,
+.team::before,
+.fixtures::before,
+.community::before,
+.contact::before,
+.gallery-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('jaguar-watermark.png');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 55%;
+  opacity: 0.04;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.about .container,
+.team .container,
+.fixtures .container,
+.community .container,
+.contact .container,
+.gallery-section .container {
+  position: relative;
+  z-index: 1;
+}
+
 /* ===== ABOUT ===== */
 .about { background: var(--navy); }
 
