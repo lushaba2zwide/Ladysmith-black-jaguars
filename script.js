@@ -53,39 +53,39 @@ document.querySelectorAll('.value-card, .player-card, .stat').forEach(el => {
 });
 
 // ── Hero Slideshow ────────────────────────────────────────────
-(function initHeroSlideshow() {
-  const container = document.getElementById('hero-slides');
-  if (!container) return;
+(function initHeroCollage() {
+  const colA = document.getElementById('collage-col-a');
+  const colB = document.getElementById('collage-col-b');
+  const colC = document.getElementById('collage-col-c');
+  const strip = document.getElementById('img-strip');
 
-  let images = [];
-  if (!images.length) {
-    container.closest('.hero').classList.add('hero-no-images');
-    container.closest('.hero').style.background =
-      'linear-gradient(135deg, #0a0a0a 0%, #1a1a0a 50%, #0a0a0a 100%)';
-    return;
-  }
+  if (!colA) return;
 
-  // build slide elements
-  images.forEach((src, i) => {
-    const div = document.createElement('div');
-    div.className = 'hero-slide' + (i === 0 ? ' active' : '');
-    div.style.backgroundImage = `url('${src}')`;
-    container.appendChild(div);
+  const imgs = [...STATIC_IMAGES].sort(() => Math.random() - 0.5);
+  const third = Math.ceil(imgs.length / 3);
+  const cols = [imgs.slice(0, third), imgs.slice(third, third * 2), imgs.slice(third * 2)];
+
+  [colA, colB, colC].forEach((col, i) => {
+    const set = [...cols[i], ...cols[i]];
+    set.forEach(src => {
+      const img = document.createElement('img');
+      img.src = src;
+      img.alt = 'Black Jaguars';
+      img.loading = 'lazy';
+      col.appendChild(img);
+    });
   });
 
-  if (images.length < 2) return; // only one image, no need to cycle
-
-  let current = 0;
-  setInterval(() => {
-    const slides = container.querySelectorAll('.hero-slide');
-    slides[current].classList.remove('active');
-    current = (current + 1) % slides.length;
-    // reset zoom animation
-    slides[current].style.animation = 'none';
-    slides[current].offsetHeight; // reflow
-    slides[current].style.animation = '';
-    slides[current].classList.add('active');
-  }, 5000);
+  if (strip) {
+    const stripImgs = [...imgs, ...imgs];
+    stripImgs.forEach(src => {
+      const img = document.createElement('img');
+      img.src = src;
+      img.alt = '';
+      img.loading = 'lazy';
+      strip.appendChild(img);
+    });
+  }
 })();
 
 // ── Public Gallery ────────────────────────────────────────────
