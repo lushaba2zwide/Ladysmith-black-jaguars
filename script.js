@@ -60,8 +60,11 @@ document.querySelectorAll('.value-card, .player-card, .stat').forEach(el => {
   let images = [];
   try {
     const gallery = JSON.parse(localStorage.getItem('bjr_gallery')) || [];
-    images = gallery.filter(g => g.type === 'image').map(g => g.src);
-  } catch {}
+    const adminImgs = gallery.filter(g => g.type === 'image').map(g => g.src);
+    images = adminImgs.length ? adminImgs : STATIC_IMAGES;
+  } catch {
+    images = STATIC_IMAGES;
+  }
 
   if (!images.length) {
     // no gallery images yet — show fallback jaguar pattern
@@ -95,10 +98,88 @@ document.querySelectorAll('.value-card, .player-card, .stat').forEach(el => {
 })();
 
 // ── Public Gallery ────────────────────────────────────────────
+const STATIC_IMAGES = [
+  "images/IMG-20260321-WA0044.jpg",
+  "images/IMG-20260321-WA0045.jpg",
+  "images/IMG-20260321-WA0045 - Copy.jpg",
+  "images/IMG-20260321-WA0046.jpg",
+  "images/IMG-20260321-WA0047.jpg",
+  "images/IMG-20260321-WA0048.jpg",
+  "images/IMG-20260321-WA0049.jpg",
+  "images/IMG-20260321-WA0050.jpg",
+  "images/IMG-20260321-WA0051.jpg",
+  "images/IMG-20260321-WA0052.jpg",
+  "images/IMG-20260321-WA0056.jpg",
+  "images/IMG-20260323-WA0003.jpg",
+  "images/IMG-20260323-WA0004.jpg",
+  "images/IMG-20260323-WA0005.jpg",
+  "images/IMG-20260323-WA0006.jpg",
+  "images/IMG-20260323-WA0007.jpg",
+  "images/IMG-20260323-WA0013.jpg",
+  "images/IMG-20260323-WA0014.jpg",
+  "images/IMG-20260323-WA0015.jpg",
+  "images/IMG-20260323-WA0016.jpg",
+  "images/IMG-20260323-WA0017.jpg",
+  "images/IMG-20260323-WA0018.jpg",
+  "images/IMG-20260323-WA0024.jpg",
+  "images/IMG-20260323-WA0025.jpg",
+  "images/IMG-20260323-WA0026.jpg",
+  "images/IMG-20260323-WA0028.jpg",
+  "images/IMG-20260323-WA0029.jpg",
+  "images/IMG-20260323-WA0031.jpg",
+  "images/IMG-20260323-WA0033.jpg",
+  "images/IMG-20260323-WA0036.jpg",
+  "images/IMG-20260323-WA0040.jpg",
+  "images/IMG-20260323-WA0042.jpg",
+  "images/IMG-20260323-WA0046.jpg",
+  "images/IMG-20260323-WA0048.jpg",
+  "images/IMG-20260323-WA0049.jpg",
+  "images/IMG-20260323-WA0050.jpg",
+  "images/IMG-20260323-WA0051.jpg",
+  "images/IMG-20260323-WA0052.jpg",
+  "images/IMG-20260323-WA0054.jpg",
+  "images/IMG-20260323-WA0055.jpg",
+  "images/IMG-20260323-WA0056.jpg",
+  "images/IMG-20260323-WA0057.jpg",
+  "images/IMG-20260323-WA0058.jpg",
+  "images/IMG-20260323-WA0060.jpg",
+  "images/IMG-20260323-WA0061.jpg",
+  "images/IMG-20260323-WA0062.jpg",
+  "images/IMG-20260323-WA0063.jpg",
+  "images/IMG-20260323-WA0064.jpg",
+  "images/IMG-20260323-WA0065.jpg",
+  "images/IMG-20260323-WA0066.jpg",
+  "images/IMG-20260323-WA0068.jpg",
+  "images/IMG-20260323-WA0069.jpg",
+  "images/IMG-20260323-WA0071.jpg",
+  "images/IMG-20260323-WA0072.jpg",
+  "images/IMG-20260323-WA0073.jpg",
+  "images/IMG-20260323-WA0074.jpg",
+  "images/IMG-20260323-WA0075.jpg",
+  "images/IMG-20260323-WA0079.jpg",
+  "images/IMG-20260323-WA0080.jpg",
+  "images/IMG-20260323-WA0081.jpg",
+  "images/IMG-20260323-WA0113.jpg",
+  "images/IMG-20260323-WA0114.jpg",
+  "images/IMG-20260323-WA0115.jpg",
+  "images/IMG-20260323-WA0116.jpg",
+  "images/IMG-20260323-WA0117.jpg",
+  "images/IMG-20260323-WA0118.jpg",
+  "images/IMG-20260323-WA0120.jpg",
+  "images/IMG-20260323-WA0121.jpg",
+  "images/IMG-20260323-WA0122.jpg",
+  "images/IMG-20260323-WA0124.jpg",
+];
 let pubGalleryFilter = 'all';
 
 function loadPubGallery() {
-  try { return JSON.parse(localStorage.getItem('bjr_gallery')) || []; } catch { return []; }
+  try {
+    const adminItems = JSON.parse(localStorage.getItem('bjr_gallery')) || [];
+    const staticItems = STATIC_IMAGES.map(src => ({ type: 'image', src, caption: '' }));
+    return [...adminItems, ...staticItems];
+  } catch { 
+    return STATIC_IMAGES.map(src => ({ type: 'image', src, caption: '' }));
+  }
 }
 
 function getYouTubeEmbed(url) {
