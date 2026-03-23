@@ -965,6 +965,7 @@ a { text-decoration: none; color: inherit; }
   border-radius: var(--radius);
   padding: 2rem;
   justify-content: space-around;
+  margin-bottom: 3rem;
 }
 
 .c-stat {
@@ -986,4 +987,79 @@ a { text-decoration: none; color: inherit; }
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: var(--grey);
+}
+
+/* Feature block — school programme */
+.community-feature {
+  display: flex;
+  gap: 2rem;
+  background: rgba(0,0,0,0.2);
+  border: 1px solid rgba(201,168,76,0.2);
+  border-radius: var(--radius);
+  padding: 2.5rem;
+  margin-bottom: 3rem;
+}
+
+.community-feature-icon {
+  font-size: 3rem;
+  flex-shrink: 0;
+  margin-top: 0.2rem;
+}
+
+.community-feature-body h3 {
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: var(--gold);
+  margin-bottom: 1rem;
+}
+
+.community-feature-body p {
+  color: #bbc8dd;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
+
+.school-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.2rem;
+  margin-top: 1.5rem;
+}
+
+.school-card {
+  display: flex;
+  gap: 1rem;
+  background: rgba(201,168,76,0.06);
+  border: 1px solid rgba(201,168,76,0.15);
+  border-radius: var(--radius);
+  padding: 1.2rem;
+  transition: border-color var(--transition), transform var(--transition);
+}
+
+.school-card:hover {
+  border-color: var(--gold);
+  transform: translateY(-3px);
+}
+
+.school-icon { font-size: 1.5rem; flex-shrink: 0; }
+
+.school-card strong {
+  display: block;
+  color: var(--white);
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+}
+
+.school-card p {
+  color: #99aabb;
+  font-size: 0.82rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+@media (max-width: 640px) {
+  .community-feature { flex-direction: column; }
+  .school-cards { grid-template-columns: 1fr; }
 }
