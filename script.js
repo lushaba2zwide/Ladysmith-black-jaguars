@@ -314,3 +314,50 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbo
 
 // init
 renderPubGallery();
+
+// ── Admin Fixtures on Public Site ────────────────────────────
+(function renderAdminFixtures() {
+  const fixtures = JSON.parse(localStorage.getItem('bjr_fixtures') || '[]');
+  if (!fixtures.length) return;
+
+  // Find or create the "Our Results" block inside the fixtures section
+  let container = document.getElementById('admin-fixtures-block');
+  if (!container) {
+    const section = document.querySelector('.fixtures .container');
+    if (!section) return;
+    container = document.createElement('div');
+    container.id = 'admin-fixtures-block';
+    container.innerHTML = '<h3 class="results-heading">Our Results</h3>';
+    section.appendChild(container);
+  }
+
+  const table = document.createElement('div');
+  table.className = 'fixtures-table-wrap';
+  table.innerHTML = `
+    <table class="fixtures-table">
+      <thead>
+        <tr><th>Date</th><th>Home</th><th>Away</th><th>Venue</th><th>Div</th><th>Result</th></tr>
+      </thead>
+      <tbody>
+        ${fixtures.map(f => {
+          const outcome = f.outcome || 'upcoming';
+          let badge, rowClass = '';
+          if (outcome === 'W') { badge = `<span class="badge win">W ${f.scoreUs}–${f.scoreThem}</span>`; rowClass = 'result-win'; }
+          else if (outcome === 'L') { badge = `<span class="badge loss">L ${f.scoreUs}–${f.scoreThem}</span>`; rowClass = 'result-loss'; }
+          else if (outcome === 'D') { badge = `<span class="badge draw">D ${f.scoreUs}–${f.scoreThem}</span>`; rowClass = 'result-draw'; }
+          else if (outcome === 'bye') { badge = `<span class="badge bye">Bye</span>`; }
+          else { badge = `<span class="badge upcoming">Upcoming</span>`; rowClass = 'upcoming'; }
+          const isHome = f.home.toLowerCase().includes('jaguar') || f.home.toLowerCase().includes('black');
+          return `<tr class="${rowClass}">
+            <td>${f.date}</td>
+            <td class="${isHome ? 'home-team' : ''}">${f.home}</td>
+            <td class="${!isHome ? 'home-team' : ''}">${f.away}</td>
+            <td>${f.venue || '—'}</td>
+            <td>${f.division || '—'}</td>
+            <td>${badge}</td>
+          </tr>`;
+        }).join('')}
+      </tbody>
+    </table>`;
+  container.appendChild(table);
+})();

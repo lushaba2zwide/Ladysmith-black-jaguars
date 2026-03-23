@@ -641,8 +641,20 @@ a { text-decoration: none; color: inherit; }
 
 .badge.win { background: rgba(34,197,94,0.15); color: #4ade80; border: 1px solid rgba(34,197,94,0.3); }
 .badge.loss { background: rgba(239,68,68,0.15); color: #f87171; border: 1px solid rgba(239,68,68,0.3); }
+.badge.draw { background: rgba(100,150,255,0.15); color: #93c5fd; border: 1px solid rgba(100,150,255,0.3); }
 .badge.upcoming { background: rgba(201,168,76,0.15); color: var(--gold); border: 1px solid rgba(201,168,76,0.3); }
 .badge.bye { background: rgba(136,136,136,0.15); color: var(--grey); border: 1px solid rgba(136,136,136,0.3); }
+
+.results-heading {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--gold);
+  margin: 2.5rem 0 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border-left: 3px solid var(--gold);
+  padding-left: 0.8rem;
+}
 
 .div-tabs { display: flex; gap: 0.5rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
 

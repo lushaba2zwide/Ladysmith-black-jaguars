@@ -106,27 +106,36 @@ let fixtures = load('bjr_fixtures', []);
 function renderFixtures() {
   const tbody = document.getElementById('fixtures-tbody');
   if (!fixtures.length) {
-    tbody.innerHTML = '<tr><td colspan="7" class="empty-state">No custom fixtures yet.</td></tr>';
+    tbody.innerHTML = '<tr><td colspan="7" class="empty-state">No fixtures yet. Add one above.</td></tr>';
     return;
   }
-  tbody.innerHTML = fixtures.map((f, i) => `
-    <tr>
-      <td>${f.date}</td>
-      <td>${f.home}</td>
-      <td>${f.away}</td>
-      <td>${f.venue || '—'}</td>
-      <td>${f.time || '—'}</td>
-      <td>${f.result || '<span style="color:#888">Upcoming</span>'}</td>
-      <td>
-        <button class="btn-edit" onclick="editFixture(${i})">Edit</button>
-        <button class="btn-delete" onclick="deleteFixture(${i})">Del</button>
-      </td>
-    </tr>
-  `).join('');
+  tbody.innerHTML = fixtures.map((f, i) => {
+    const outcome = f.outcome || 'upcoming';
+    let resultBadge;
+    if (outcome === 'W') resultBadge = `<span class="badge win">W ${f.scoreUs}–${f.scoreThem}</span>`;
+    else if (outcome === 'L') resultBadge = `<span class="badge loss">L ${f.scoreUs}–${f.scoreThem}</span>`;
+    else if (outcome === 'D') resultBadge = `<span class="badge draw">D ${f.scoreUs}–${f.scoreThem}</span>`;
+    else if (outcome === 'bye') resultBadge = `<span class="badge bye">Bye</span>`;
+    else resultBadge = `<span class="badge upcoming">Upcoming</span>`;
+    return `
+      <tr>
+        <td>${f.date}</td>
+        <td>${f.home}</td>
+        <td>${f.away}</td>
+        <td>${f.venue || '—'}</td>
+        <td>${f.time || '—'}</td>
+        <td>${resultBadge}</td>
+        <td>
+          <button class="btn-edit" onclick="editFixture(${i})">Edit</button>
+          <button class="btn-delete" onclick="deleteFixture(${i})">Del</button>
+        </td>
+      </tr>`;
+  }).join('');
 }
 
 function openFixtureModal(i = -1) {
   document.getElementById('f-index').value = i;
+  const scoreFields = document.getElementById('score-fields');
   if (i >= 0) {
     const f = fixtures[i];
     document.getElementById('f-date').value = f.date;
@@ -135,7 +144,9 @@ function openFixtureModal(i = -1) {
     document.getElementById('f-venue').value = f.venue || '';
     document.getElementById('f-time').value = f.time || '';
     document.getElementById('f-division').value = f.division || '1st';
-    document.getElementById('f-result').value = f.result || '';
+    document.getElementById('f-outcome').value = f.outcome || 'upcoming';
+    document.getElementById('f-score-us').value = f.scoreUs || 0;
+    document.getElementById('f-score-them').value = f.scoreThem || 0;
     document.getElementById('fixture-modal-title').textContent = 'Edit Fixture';
   } else {
     document.getElementById('f-date').value = '';
@@ -144,17 +155,30 @@ function openFixtureModal(i = -1) {
     document.getElementById('f-venue').value = '';
     document.getElementById('f-time').value = '';
     document.getElementById('f-division').value = '1st';
-    document.getElementById('f-result').value = '';
+    document.getElementById('f-outcome').value = 'upcoming';
+    document.getElementById('f-score-us').value = 0;
+    document.getElementById('f-score-them').value = 0;
     document.getElementById('fixture-modal-title').textContent = 'Add Fixture';
   }
+  const outcome = document.getElementById('f-outcome').value;
+  scoreFields.style.display = ['W','L','D'].includes(outcome) ? 'flex' : 'none';
   openModal('fixture-modal');
 }
+
+// Show/hide score fields based on outcome
+document.addEventListener('change', function(e) {
+  if (e.target.id === 'f-outcome') {
+    const scoreFields = document.getElementById('score-fields');
+    scoreFields.style.display = ['W','L','D'].includes(e.target.value) ? 'flex' : 'none';
+  }
+});
 
 function editFixture(i) { openFixtureModal(i); }
 
 function saveFixture(e) {
   e.preventDefault();
   const i = parseInt(document.getElementById('f-index').value);
+  const outcome = document.getElementById('f-outcome').value;
   const fixture = {
     date: document.getElementById('f-date').value,
     home: document.getElementById('f-home').value.trim(),
@@ -162,7 +186,9 @@ function saveFixture(e) {
     venue: document.getElementById('f-venue').value.trim(),
     time: document.getElementById('f-time').value,
     division: document.getElementById('f-division').value,
-    result: document.getElementById('f-result').value.trim(),
+    outcome,
+    scoreUs: parseInt(document.getElementById('f-score-us').value) || 0,
+    scoreThem: parseInt(document.getElementById('f-score-them').value) || 0,
   };
   if (i >= 0) fixtures[i] = fixture; else fixtures.push(fixture);
   save('bjr_fixtures', fixtures);

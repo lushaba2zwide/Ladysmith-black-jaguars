@@ -144,9 +144,19 @@
             <option value="3rd">3rd Division</option>
           </select>
         </label>
-        <label>Result (leave blank if upcoming)
-          <input type="text" id="f-result" placeholder="e.g. W 34-12 or L 14-27" />
+        <label>Outcome
+          <select id="f-outcome">
+            <option value="upcoming">Upcoming</option>
+            <option value="W">Win</option>
+            <option value="L">Loss</option>
+            <option value="D">Draw</option>
+            <option value="bye">Bye</option>
+          </select>
         </label>
+        <div id="score-fields" style="display:none; gap:0.8rem; flex-direction:column;">
+          <label>Black Jaguars Score <input type="number" id="f-score-us" min="0" value="0" /></label>
+          <label>Opponent Score <input type="number" id="f-score-them" min="0" value="0" /></label>
+        </div>
         <div class="modal-actions">
           <button type="button" class="btn-cancel" onclick="closeModal('fixture-modal')">Cancel</button>
           <button type="submit" class="btn-save">Save</button>
