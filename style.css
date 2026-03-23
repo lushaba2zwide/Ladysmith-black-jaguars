@@ -823,3 +823,22 @@ a { text-decoration: none; color: inherit; }
   font-size: 0.88rem;
   text-align: center;
 }
+
+.gallery-pub-item { position: relative; }
+
+.vid-play-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -60%);
+  font-size: 2.5rem;
+  color: var(--white);
+  background: rgba(0,0,0,0.5);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}

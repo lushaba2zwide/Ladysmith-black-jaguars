@@ -172,13 +172,75 @@ const STATIC_IMAGES = [
 ];
 let pubGalleryFilter = 'all';
 
+const STATIC_VIDEOS = [
+  "images/VID-20260227-WA0003.mp4",
+  "images/VID-20260313-WA0001.mp4",
+  "images/VID-20260318-WA0056.mp4",
+  "images/VID-20260319-WA0066.mp4",
+  "images/VID-20260319-WA0070.mp4",
+  "images/VID-20260319-WA0071.mp4",
+  "images/VID-20260319-WA0084.mp4",
+  "images/VID-20260319-WA0086.mp4",
+  "images/VID-20260319-WA0087.mp4",
+  "images/VID-20260319-WA0088.mp4",
+  "images/VID-20260319-WA0089.mp4",
+  "images/VID-20260319-WA0115.mp4",
+  "images/VID-20260321-WA0053.mp4",
+  "images/VID-20260323-WA0008.mp4",
+  "images/VID-20260323-WA0011.mp4",
+  "images/VID-20260323-WA0023.mp4",
+  "images/VID-20260323-WA0034.mp4",
+  "images/VID-20260323-WA0035.mp4",
+  "images/VID-20260323-WA0043.mp4",
+  "images/VID-20260323-WA0044.mp4",
+  "images/VID-20260323-WA0070.mp4",
+  "images/VID-20260323-WA0082.mp4",
+  "images/VID-20260323-WA0085.mp4",
+  "images/VID-20260323-WA0087.mp4",
+  "images/VID-20260323-WA0088.mp4",
+  "images/VID-20260323-WA0089.mp4",
+  "images/VID-20260323-WA0090.mp4",
+  "images/VID-20260323-WA0091.mp4",
+  "images/VID-20260323-WA0092.mp4",
+  "images/VID-20260323-WA0093.mp4",
+  "images/VID-20260323-WA0094.mp4",
+  "images/VID-20260323-WA0095.mp4",
+  "images/VID-20260323-WA0096.mp4",
+  "images/VID-20260323-WA0097.mp4",
+  "images/VID-20260323-WA0098.mp4",
+  "images/VID-20260323-WA0099.mp4",
+  "images/VID-20260323-WA0100.mp4",
+  "images/VID-20260323-WA0101.mp4",
+  "images/VID-20260323-WA0110.mp4",
+  "images/VID-20260323-WA0119.mp4",
+  "images/VID-20260323-WA0123.mp4",
+  "images/VID-20260323-WA0125.mp4",
+  "images/VID-20260323-WA0126.mp4",
+  "images/VID-20260323-WA0127.mp4",
+  "images/VID-20260323-WA0128.mp4",
+  "images/VID-20260323-WA0129.mp4",
+  "images/VID-20260323-WA0130.mp4",
+  "images/VID-20260323-WA0131.mp4",
+  "images/VID-20260323-WA0132.mp4",
+  "images/VID-20260323-WA0133.mp4",
+  "images/VID-20260323-WA0134.mp4",
+  "images/VID-20260323-WA0135.mp4",
+  "images/VID-20260323-WA0136.mp4",
+  "images/VID-20260323-WA0137.mp4",
+  "images/VID-20260323-WA0138.mp4",
+];
+
 function loadPubGallery() {
   try {
     const adminItems = JSON.parse(localStorage.getItem('bjr_gallery')) || [];
     const staticItems = STATIC_IMAGES.map(src => ({ type: 'image', src, caption: '' }));
-    return [...adminItems, ...staticItems];
-  } catch { 
-    return STATIC_IMAGES.map(src => ({ type: 'image', src, caption: '' }));
+    const staticVideos = STATIC_VIDEOS.map(src => ({ type: 'video', src, caption: '', local: true }));
+    return [...adminItems, ...staticItems, ...staticVideos];
+  } catch {
+    return [
+      ...STATIC_IMAGES.map(src => ({ type: 'image', src, caption: '' })),
+      ...STATIC_VIDEOS.map(src => ({ type: 'video', src, caption: '', local: true })),
+    ];
   }
 }
 
@@ -202,7 +264,11 @@ function renderPubGallery() {
     <div class="gallery-pub-item" onclick="openLightbox(${all.indexOf(item)})">
       ${item.type === 'image'
         ? `<img src="${item.src}" alt="${item.caption || 'Gallery'}" loading="lazy" />`
-        : `<div class="vid-thumb">▶</div>`
+        : item.local
+          ? `<video preload="metadata" style="width:100%;height:180px;object-fit:cover;display:block;">
+               <source src="${item.src}#t=0.5" type="video/mp4" />
+             </video><div class="vid-play-overlay">▶</div>`
+          : `<div class="vid-thumb">▶</div>`
       }
       ${item.caption ? `<div class="item-caption">${item.caption}</div>` : ''}
     </div>
@@ -225,6 +291,13 @@ function openLightbox(i) {
   if (item.type === 'image') {
     content.innerHTML = `
       <img src="${item.src}" alt="${item.caption || 'Gallery'}" />
+      ${item.caption ? `<p class="lightbox-caption">${item.caption}</p>` : ''}
+    `;
+  } else if (item.local) {
+    content.innerHTML = `
+      <video controls autoplay style="max-width:90vw;max-height:80vh;border-radius:8px;">
+        <source src="${item.src}" type="video/mp4" />
+      </video>
       ${item.caption ? `<p class="lightbox-caption">${item.caption}</p>` : ''}
     `;
   } else {
