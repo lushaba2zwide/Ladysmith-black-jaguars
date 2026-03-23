@@ -842,3 +842,109 @@ a { text-decoration: none; color: inherit; }
   .section { padding: 4rem 0; }
   .team-grid { grid-template-columns: repeat(2, 1fr); }
 }
+
+/* ===== COMMUNITY ===== */
+.community { background: var(--navy); }
+
+.community-intro {
+  max-width: 720px;
+  margin-bottom: 3rem;
+}
+
+.community-intro p {
+  color: #bbc8dd;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  border-left: 3px solid var(--gold);
+  padding-left: 1.2rem;
+}
+
+.community-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.community-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(201,168,76,0.15);
+  border-radius: var(--radius);
+  padding: 2rem 1.5rem;
+  transition: border-color var(--transition), transform var(--transition);
+}
+
+.community-card:hover {
+  border-color: var(--gold);
+  transform: translateY(-4px);
+}
+
+.community-icon {
+  font-size: 2.2rem;
+  margin-bottom: 1rem;
+}
+
+.community-card h3 {
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.8rem;
+}
+
+.community-card p {
+  color: #aabbd0;
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+.school-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.school-tags span {
+  background: rgba(201,168,76,0.12);
+  border: 1px solid rgba(201,168,76,0.25);
+  color: var(--gold-light);
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.25rem 0.7rem;
+  border-radius: 20px;
+  letter-spacing: 0.03em;
+}
+
+.community-stats {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  background: rgba(0,0,0,0.25);
+  border: 1px solid rgba(201,168,76,0.15);
+  border-radius: var(--radius);
+  padding: 2rem;
+  justify-content: space-around;
+}
+
+.c-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.c-num {
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--gold);
+  line-height: 1;
+}
+
+.c-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--grey);
+}
