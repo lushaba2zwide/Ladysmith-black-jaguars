@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /admin.html
 
-Sitemap: https://blackjaguarsrfc.netlify.app/sitemap.xml
+Sitemap: https://ladysmithblackjaguars.netlify.app/sitemap.xml
