@@ -223,9 +223,14 @@ const STATIC_VIDEOS = [
 
 function loadPubGallery() {
   try {
+    const hidden = JSON.parse(localStorage.getItem('bjr_hidden_media')) || [];
     const adminItems = JSON.parse(localStorage.getItem('bjr_gallery')) || [];
-    const staticItems = STATIC_IMAGES.map(src => ({ type: 'image', src, caption: '' }));
-    const staticVideos = STATIC_VIDEOS.map(src => ({ type: 'video', src, caption: '', local: true }));
+    const staticItems = STATIC_IMAGES
+      .filter(src => !hidden.includes(src))
+      .map(src => ({ type: 'image', src, caption: '' }));
+    const staticVideos = STATIC_VIDEOS
+      .filter(src => !hidden.includes(src))
+      .map(src => ({ type: 'video', src, caption: '', local: true }));
     return [...adminItems, ...staticItems, ...staticVideos];
   } catch {
     return [

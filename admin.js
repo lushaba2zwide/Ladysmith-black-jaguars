@@ -310,6 +310,42 @@ loadContact();
 // ══════════════════════════════════════════════════════════════
 let gallery = load('bjr_gallery', []);
 let galleryFilter = 'all';
+let hiddenMedia = load('bjr_hidden_media', []);
+
+const STATIC_IMAGES = [
+  "images/IMG-20260321-WA0044.jpg","images/IMG-20260321-WA0045.jpg","images/IMG-20260321-WA0045 - Copy.jpg",
+  "images/IMG-20260321-WA0046.jpg","images/IMG-20260321-WA0047.jpg","images/IMG-20260321-WA0048.jpg",
+  "images/IMG-20260321-WA0049.jpg","images/IMG-20260321-WA0050.jpg","images/IMG-20260321-WA0051.jpg",
+  "images/IMG-20260321-WA0052.jpg","images/IMG-20260321-WA0056.jpg","images/IMG-20260323-WA0003.jpg",
+  "images/IMG-20260323-WA0004.jpg","images/IMG-20260323-WA0005.jpg","images/IMG-20260323-WA0006.jpg",
+  "images/IMG-20260323-WA0007.jpg","images/IMG-20260323-WA0013.jpg","images/IMG-20260323-WA0014.jpg",
+  "images/IMG-20260323-WA0015.jpg","images/IMG-20260323-WA0016.jpg","images/IMG-20260323-WA0017.jpg",
+  "images/IMG-20260323-WA0018.jpg","images/IMG-20260323-WA0024.jpg","images/IMG-20260323-WA0025.jpg",
+  "images/IMG-20260323-WA0026.jpg","images/IMG-20260323-WA0028.jpg","images/IMG-20260323-WA0029.jpg",
+  "images/IMG-20260323-WA0031.jpg"
+];
+
+const STATIC_VIDEOS = [
+  "images/VID-20260227-WA0003.mp4","images/VID-20260313-WA0001.mp4","images/VID-20260318-WA0056.mp4",
+  "images/VID-20260319-WA0066.mp4","images/VID-20260319-WA0070.mp4","images/VID-20260319-WA0071.mp4",
+  "images/VID-20260319-WA0084.mp4","images/VID-20260319-WA0086.mp4","images/VID-20260319-WA0087.mp4",
+  "images/VID-20260319-WA0088.mp4","images/VID-20260319-WA0089.mp4","images/VID-20260319-WA0115.mp4",
+  "images/VID-20260321-WA0053.mp4","images/VID-20260323-WA0008.mp4","images/VID-20260323-WA0011.mp4",
+  "images/VID-20260323-WA0023.mp4","images/VID-20260323-WA0034.mp4","images/VID-20260323-WA0035.mp4",
+  "images/VID-20260323-WA0043.mp4","images/VID-20260323-WA0044.mp4","images/VID-20260323-WA0070.mp4",
+  "images/VID-20260323-WA0082.mp4","images/VID-20260323-WA0085.mp4","images/VID-20260323-WA0087.mp4",
+  "images/VID-20260323-WA0088.mp4","images/VID-20260323-WA0089.mp4","images/VID-20260323-WA0090.mp4",
+  "images/VID-20260323-WA0091.mp4","images/VID-20260323-WA0092.mp4","images/VID-20260323-WA0093.mp4",
+  "images/VID-20260323-WA0094.mp4","images/VID-20260323-WA0095.mp4","images/VID-20260323-WA0096.mp4",
+  "images/VID-20260323-WA0097.mp4","images/VID-20260323-WA0098.mp4","images/VID-20260323-WA0099.mp4",
+  "images/VID-20260323-WA0100.mp4","images/VID-20260323-WA0101.mp4","images/VID-20260323-WA0110.mp4",
+  "images/VID-20260323-WA0119.mp4","images/VID-20260323-WA0123.mp4","images/VID-20260323-WA0125.mp4",
+  "images/VID-20260323-WA0126.mp4","images/VID-20260323-WA0127.mp4","images/VID-20260323-WA0128.mp4",
+  "images/VID-20260323-WA0129.mp4","images/VID-20260323-WA0130.mp4","images/VID-20260323-WA0131.mp4",
+  "images/VID-20260323-WA0132.mp4","images/VID-20260323-WA0133.mp4","images/VID-20260323-WA0134.mp4",
+  "images/VID-20260323-WA0135.mp4","images/VID-20260323-WA0136.mp4","images/VID-20260323-WA0137.mp4",
+  "images/VID-20260323-WA0138.mp4"
+];
 
 function toggleGalleryInputs() {
   const type = document.getElementById('g-type').value;
@@ -330,6 +366,112 @@ function previewFile() {
 }
 
 function openGalleryModal() {
+  document.getElementById('g-type').value = 'image';
+  document.getElementById('g-file').value = '';
+  document.getElementById('g-url').value = '';
+  document.getElementById('g-caption').value = '';
+  document.getElementById('g-preview-wrap').style.display = 'none';
+  toggleGalleryInputs();
+  openModal('gallery-modal');
+}
+
+function saveGalleryItem(e) {
+  e.preventDefault();
+  const type = document.getElementById('g-type').value;
+  const caption = document.getElementById('g-caption').value.trim();
+
+  if (type === 'image') {
+    const file = document.getElementById('g-file').files[0];
+    if (!file) { alert('Please select an image.'); return; }
+    const reader = new FileReader();
+    reader.onload = ev => {
+      gallery.unshift({ type: 'image', src: ev.target.result, caption });
+      save('bjr_gallery', gallery);
+      renderGalleryAdmin();
+      closeModal('gallery-modal');
+    };
+    reader.readAsDataURL(file);
+  } else {
+    const url = document.getElementById('g-url').value.trim();
+    if (!url) { alert('Please enter a video URL.'); return; }
+    gallery.unshift({ type: 'video', src: url, caption });
+    save('bjr_gallery', gallery);
+    renderGalleryAdmin();
+    closeModal('gallery-modal');
+  }
+}
+
+// Delete admin-added item
+function deleteGalleryItem(i) {
+  if (!confirm('Remove this item?')) return;
+  gallery.splice(i, 1);
+  save('bjr_gallery', gallery);
+  renderGalleryAdmin();
+}
+
+// Hide/show static file
+function hideStaticItem(src) {
+  if (!confirm('Hide this item from the public gallery?')) return;
+  if (!hiddenMedia.includes(src)) hiddenMedia.push(src);
+  save('bjr_hidden_media', hiddenMedia);
+  renderGalleryAdmin();
+}
+
+function restoreStaticItem(src) {
+  hiddenMedia = hiddenMedia.filter(h => h !== src);
+  save('bjr_hidden_media', hiddenMedia);
+  renderGalleryAdmin();
+}
+
+function filterGallery(type, btn) {
+  galleryFilter = type;
+  document.querySelectorAll('.gf-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderGalleryAdmin();
+}
+
+function renderGalleryAdmin() {
+  const grid = document.getElementById('gallery-admin-grid');
+
+  // Build full list: admin items + static items
+  const adminItems = gallery.map((item, i) => ({ ...item, adminIndex: i, isStatic: false }));
+  const staticImgs = STATIC_IMAGES.map(src => ({ type: 'image', src, caption: '', isStatic: true }));
+  const staticVids = STATIC_VIDEOS.map(src => ({ type: 'video', src, caption: '', isStatic: true }));
+  const all = [...adminItems, ...staticImgs, ...staticVids];
+
+  const filtered = galleryFilter === 'all' ? all : all.filter(i => i.type === galleryFilter);
+
+  if (!filtered.length) {
+    grid.innerHTML = '<p class="empty-state">No media found.</p>';
+    return;
+  }
+
+  grid.innerHTML = filtered.map(item => {
+    const isHidden = item.isStatic && hiddenMedia.includes(item.src);
+    const thumb = item.type === 'image'
+      ? `<img src="${item.src}" alt="" loading="lazy" style="opacity:${isHidden ? 0.3 : 1}" />`
+      : `<div class="video-thumb" style="opacity:${isHidden ? 0.3 : 1}">▶<br><small>${item.src.split('/').pop()}</small></div>`;
+
+    const actions = item.isStatic
+      ? isHidden
+        ? `<button class="btn-edit" style="width:100%" onclick="restoreStaticItem('${item.src}')">Restore</button>`
+        : `<button class="btn-delete" style="width:100%" onclick="hideStaticItem('${item.src}')">Hide</button>`
+      : `<button class="btn-delete" style="width:100%" onclick="deleteGalleryItem(${item.adminIndex})">Remove</button>`;
+
+    return `
+      <div class="gallery-item" style="${isHidden ? 'opacity:0.5' : ''}">
+        ${thumb}
+        <div class="gallery-item-info">
+          <span>${item.caption || (item.type === 'video' ? 'Video' : 'Photo')}</span>
+          <span class="gallery-type-badge ${item.type}">${item.type === 'image' ? '📷' : '🎬'}</span>
+        </div>
+        <div class="card-actions" style="padding:0 0.8rem 0.8rem">${actions}</div>
+      </div>`;
+  }).join('');
+}
+
+// init gallery
+renderGalleryAdmin();
   document.getElementById('g-type').value = 'image';
   document.getElementById('g-file').value = '';
   document.getElementById('g-url').value = '';
