@@ -28,9 +28,10 @@
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: center top;
+  object-fit: contain;
+  object-position: center center;
   animation: jag-zoom 8s ease forwards;
+  filter: contrast(1.1) saturate(1.4);
 }
 
 @keyframes jag-zoom {
