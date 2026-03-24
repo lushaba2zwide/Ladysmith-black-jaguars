@@ -27,13 +27,14 @@ document.querySelectorAll('.modal-overlay').forEach(overlay => {
 // PLAYERS
 // ══════════════════════════════════════════════════════════════
 let players = load('bjr_players', [
-  { name: 'Siyanda Dlamini', number: 1, position: 'Loosehead Prop', captain: true },
-  { name: 'Thabo Mthembu',   number: 9, position: 'Scrumhalf',       captain: false },
-  { name: 'Lungelo Zulu',    number: 10, position: 'Flyhalf',         captain: false },
-  { name: 'Nkosinathi Cele', number: 8, position: 'Number 8',         captain: false },
-  { name: 'Bongani Ntuli',   number: 15, position: 'Fullback',        captain: false },
-  { name: 'Musa Khumalo',    number: 7, position: 'Openside Flanker', captain: false },
+  { name: 'Siyanda Dlamini', number: 1,  position: 'Loosehead Prop',    captain: true  },
+  { name: 'Thabo Mthembu',   number: 9,  position: 'Scrumhalf',          captain: false },
+  { name: 'Lungelo Zulu',    number: 10, position: 'Flyhalf',             captain: false },
+  { name: 'Nkosinathi Cele', number: 8,  position: 'Number 8',            captain: false },
+  { name: 'Bongani Ntuli',   number: 15, position: 'Fullback',            captain: false },
+  { name: 'Musa Khumalo',    number: 7,  position: 'Openside Flanker',    captain: false },
 ]);
+let hiddenPlayers = load('bjr_hidden_players', []);
 
 function renderPlayers() {
   const grid = document.getElementById('players-grid');
@@ -41,18 +42,37 @@ function renderPlayers() {
     grid.innerHTML = '<p class="empty-state">No players yet. Add your first player.</p>';
     return;
   }
-  grid.innerHTML = players.map((p, i) => `
-    <div class="player-card-admin">
-      <div class="jersey">${p.number}</div>
-      <h3>${p.name}</h3>
-      <span class="pos">${p.position}</span>
-      ${p.captain ? '<span class="captain-tag">Captain</span>' : ''}
-      <div class="card-actions">
-        <button class="btn-edit" onclick="editPlayer(${i})">Edit</button>
-        <button class="btn-delete" onclick="deletePlayer(${i})">Delete</button>
-      </div>
-    </div>
-  `).join('');
+  grid.innerHTML = players.map((p, i) => {
+    const isHidden = hiddenPlayers.includes(i);
+    return `
+      <div class="player-card-admin" style="${isHidden ? 'opacity:0.45' : ''}">
+        <div class="jersey">${p.number}</div>
+        <h3>${p.name}</h3>
+        <span class="pos">${p.position}</span>
+        ${p.captain ? '<span class="captain-tag">Captain</span>' : ''}
+        ${isHidden ? '<span class="hidden-tag">Hidden</span>' : ''}
+        <div class="card-actions">
+          <button class="btn-edit" onclick="editPlayer(${i})">Edit</button>
+          ${isHidden
+            ? `<button class="btn-edit" onclick="restorePlayer(${i})">Restore</button>`
+            : `<button class="btn-delete" onclick="hidePlayer(${i})">Hide</button>`
+          }
+          <button class="btn-delete" onclick="deletePlayer(${i})">Delete</button>
+        </div>
+      </div>`;
+  }).join('');
+}
+
+function hidePlayer(i) {
+  if (!hiddenPlayers.includes(i)) hiddenPlayers.push(i);
+  save('bjr_hidden_players', hiddenPlayers);
+  renderPlayers();
+}
+
+function restorePlayer(i) {
+  hiddenPlayers = hiddenPlayers.filter(h => h !== i);
+  save('bjr_hidden_players', hiddenPlayers);
+  renderPlayers();
 }
 
 function openPlayerModal(i = -1) {

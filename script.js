@@ -366,3 +366,41 @@ renderPubGallery();
     </table>`;
   container.appendChild(table);
 })();
+
+// ── Public Team Section ───────────────────────────────────────
+(function renderPublicTeam() {
+  const grid = document.getElementById('team-grid');
+  if (!grid) return;
+
+  const DEFAULT_PLAYERS = [
+    { name: 'Siyanda Dlamini', number: 1,  position: 'Loosehead Prop',    captain: true  },
+    { name: 'Thabo Mthembu',   number: 9,  position: 'Scrumhalf',          captain: false },
+    { name: 'Lungelo Zulu',    number: 10, position: 'Flyhalf',             captain: false },
+    { name: 'Nkosinathi Cele', number: 8,  position: 'Number 8',            captain: false },
+    { name: 'Bongani Ntuli',   number: 15, position: 'Fullback',            captain: false },
+    { name: 'Musa Khumalo',    number: 7,  position: 'Openside Flanker',    captain: false },
+  ];
+
+  try {
+    const stored = localStorage.getItem('bjr_players');
+    const hidden = JSON.parse(localStorage.getItem('bjr_hidden_players') || '[]');
+    const players = stored ? JSON.parse(stored) : DEFAULT_PLAYERS;
+    const visible = players.filter((_, i) => !hidden.includes(i));
+
+    if (!visible.length) {
+      grid.innerHTML = '<p style="color:#888;text-align:center;grid-column:1/-1">Squad details coming soon.</p>';
+      return;
+    }
+
+    grid.innerHTML = visible.map(p => `
+      <div class="player-card">
+        <div class="player-avatar">${p.number}</div>
+        <h3>${p.name}</h3>
+        <span class="position">${p.position}</span>
+        ${p.captain ? '<span class="captain-badge">Captain</span>' : ''}
+      </div>
+    `).join('');
+  } catch(e) {
+    grid.innerHTML = '';
+  }
+})();
